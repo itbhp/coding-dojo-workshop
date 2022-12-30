@@ -4,14 +4,6 @@ import java.util.List;
 
 public class FizzBuzz {
 
-    /*
-        Code smells:
-
-        1. Duplications: mapping value Fizz and Buzz are repeated (-> solved)
-        2. Somehow also the divisible logic is repeated  (-> solved)
-        3. Temporal coupling: if we change the order of the ifs the code will not work  (-> solved)
-     */
-
     static Rule combineRules(Rule first, Rule second) {
         return number -> {
             var firstResult = first.applyTo(number);
