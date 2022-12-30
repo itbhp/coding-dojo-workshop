@@ -15,7 +15,8 @@ public class FizzBuzzTest {
             "4, 4",
             "3, Fizz",
             "6, Fizz",
-            "5, Buzz"
+            "5, Buzz",
+            "10, Buzz"
     })
     void fizz_buzz_should_work(int number, String expected) {
         assertThat(fizzBuzz(number)).isEqualTo(expected);
