@@ -1,8 +1,6 @@
 package dojo.software.crafters;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Predicate;
 
 public class FizzBuzz {
 
@@ -14,23 +12,21 @@ public class FizzBuzz {
         3. Temporal coupling: if we change the order of the ifs the code will not work
      */
 
-    record Rule(String motto, Predicate<Integer> predicate) {
+    record Rule(String motto, int divisor) {
         boolean isSatisfiedBy(int number) {
-            return predicate.test(number);
+            return number % divisor == 0;
         }
     }
 
     public static String fizzBuzz(int number) {
         // refactoring using mutability
-        AtomicReference<String> result = new AtomicReference<>("");
-        Predicate<Integer> fizzTest = n -> n % 3 == 0;
-        Predicate<Integer> buzzTest = n -> n % 5 == 0;
-        var rules = List.of(new Rule("Fizz", fizzTest), new Rule("Buzz", buzzTest));
-        rules.forEach(rule ->
-                result.updateAndGet(previous ->
-                        rule.isSatisfiedBy(number) ? previous + rule.motto : previous
-                )
-        );
-        return result.get().isEmpty()? String.valueOf(number): result.get();
+        var result = new StringBuilder();
+        var rules = List.of(new Rule("Fizz", 3), new Rule("Buzz", 5));
+        for (Rule rule : rules) {
+            if(rule.isSatisfiedBy(number)){
+                result.append(rule.motto);
+            }
+        }
+        return result.toString().isEmpty()? String.valueOf(number): result.toString();
     }
 }
