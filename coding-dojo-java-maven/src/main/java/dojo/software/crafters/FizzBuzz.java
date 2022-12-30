@@ -23,10 +23,10 @@ public class FizzBuzz {
         var result = new StringBuilder();
         var rules = List.of(new Rule("Fizz", 3), new Rule("Buzz", 5));
         for (Rule rule : rules) {
-            if(rule.isSatisfiedBy(number)){
+            if (rule.isSatisfiedBy(number)) {
                 result.append(rule.motto);
             }
         }
-        return result.toString().isEmpty()? String.valueOf(number): result.toString();
+        return result.toString().isEmpty() ? String.valueOf(number) : result.toString();
     }
 }
