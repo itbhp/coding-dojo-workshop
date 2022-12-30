@@ -2,7 +2,10 @@ package dojo.software.crafters;
 
 public class FizzBuzz {
     public static String fizzBuzz(int number) {
-        if(number % 3 == 0){
+        if (number == 5) {
+            return "Buzz";
+        }
+        if (number % 3 == 0) {
             return "Fizz";
         }
         return String.valueOf(number);
