@@ -64,6 +64,6 @@ public class FizzBuzz {
                 .reduce(identityRule, FizzBuzz::combineRules);
 
         String rulesResult = result.applyTo(number);
-        return rulesResult.isEmpty() ? String.valueOf(number) : rulesResult ;
+        return rulesResult.isEmpty() ? String.valueOf(number) : rulesResult;
     }
 }
