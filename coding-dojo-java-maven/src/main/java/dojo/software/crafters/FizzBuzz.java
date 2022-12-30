@@ -19,14 +19,17 @@ public class FizzBuzz {
     }
 
     public static String fizzBuzz(int number) {
-        // refactoring using mutability
-        var result = new StringBuilder();
+        // refactoring removing mutability
         var rules = List.of(new Rule("Fizz", 3), new Rule("Buzz", 5));
-        for (Rule rule : rules) {
+
+        String result = rules.stream().map(rule -> {
             if (rule.isSatisfiedBy(number)) {
-                result.append(rule.motto);
+                return rule.motto;
+            } else {
+                return "";
             }
-        }
-        return result.toString().isEmpty() ? String.valueOf(number) : result.toString();
+        }).reduce("", String::concat);
+
+        return result.isEmpty() ? String.valueOf(number) : result;
     }
 }
