@@ -12,7 +12,7 @@ public class FizzBuzz {
         3. Temporal coupling: if we change the order of the ifs the code will not work  (-> solved)
      */
 
-    static GameRule combineGameRules(GameRule first, GameRule second) {
+    static Rule combineRules(Rule first, Rule second) {
         return number -> {
             var firstResult = first.applyTo(number);
             var secondResult = second.applyTo(number);
@@ -20,11 +20,11 @@ public class FizzBuzz {
         };
     }
 
-    interface GameRule {
+    interface Rule {
         String applyTo(int number);
     }
 
-    static class NumberRule implements GameRule {
+    static class NumberRule implements Rule {
         private final String motto;
         private final int divisor;
 
@@ -47,7 +47,7 @@ public class FizzBuzz {
         }
     }
 
-    enum IdentityRule implements GameRule {
+    enum IdentityRule implements Rule {
         INSTANCE;
 
         @Override
@@ -57,11 +57,11 @@ public class FizzBuzz {
     }
 
     public static String fizzBuzz(int number) {
-        List<GameRule> rules = List.of(new NumberRule("Fizz", 3), new NumberRule("Buzz", 5));
+        List<Rule> rules = List.of(new NumberRule("Fizz", 3), new NumberRule("Buzz", 5));
 
-        GameRule identityRule = IdentityRule.INSTANCE;
-        GameRule result = rules.stream()
-                .reduce(identityRule, FizzBuzz::combineGameRules);
+        Rule identityRule = IdentityRule.INSTANCE;
+        Rule result = rules.stream()
+                .reduce(identityRule, FizzBuzz::combineRules);
 
         String rulesResult = result.applyTo(number);
         return rulesResult.isEmpty() ? String.valueOf(number) : rulesResult ;
