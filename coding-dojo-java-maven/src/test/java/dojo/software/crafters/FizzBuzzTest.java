@@ -11,4 +11,9 @@ public class FizzBuzzTest {
     void one_should_print_one() {
         assertThat(fizzBuzz(1)).isEqualTo("1");
     }
+
+    @Test
+    void two_should_print_two() {
+        assertThat(fizzBuzz(2)).isEqualTo("2");
+    }
 }
