@@ -13,7 +13,7 @@ public class FizzBuzz {
      */
 
     record Rule(String motto, int divisor) {
-        String apply(int number) {
+        String applyTo(int number) {
             if (isSatisfiedBy(number)) {
                 return motto;
             } else {
@@ -31,7 +31,7 @@ public class FizzBuzz {
         var rules = List.of(new Rule("Fizz", 3), new Rule("Buzz", 5));
 
         String result = rules.stream()
-                .map(rule -> rule.apply(number))
+                .map(rule -> rule.applyTo(number))
                 .reduce("", String::concat);
 
         return result.isEmpty() ? String.valueOf(number) : result;
