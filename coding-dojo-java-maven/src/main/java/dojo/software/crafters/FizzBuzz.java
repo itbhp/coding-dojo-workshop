@@ -13,6 +13,14 @@ public class FizzBuzz {
      */
 
     record Rule(String motto, int divisor) {
+        private String apply(int number) {
+            if (isSatisfiedBy(number)) {
+                return motto;
+            } else {
+                return "";
+            }
+        }
+
         boolean isSatisfiedBy(int number) {
             return number % divisor == 0;
         }
@@ -22,14 +30,11 @@ public class FizzBuzz {
         // refactoring removing mutability
         var rules = List.of(new Rule("Fizz", 3), new Rule("Buzz", 5));
 
-        String result = rules.stream().map(rule -> {
-            if (rule.isSatisfiedBy(number)) {
-                return rule.motto;
-            } else {
-                return "";
-            }
-        }).reduce("", String::concat);
+        String result = rules.stream()
+                .map(rule -> rule.apply(number))
+                .reduce("", String::concat);
 
         return result.isEmpty() ? String.valueOf(number) : result;
     }
+
 }
