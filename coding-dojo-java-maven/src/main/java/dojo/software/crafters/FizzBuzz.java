@@ -13,7 +13,7 @@ public class FizzBuzz {
      */
 
     record Rule(String motto, int divisor) {
-        private String apply(int number) {
+        String apply(int number) {
             if (isSatisfiedBy(number)) {
                 return motto;
             } else {
@@ -21,7 +21,7 @@ public class FizzBuzz {
             }
         }
 
-        boolean isSatisfiedBy(int number) {
+        private boolean isSatisfiedBy(int number) {
             return number % divisor == 0;
         }
     }
