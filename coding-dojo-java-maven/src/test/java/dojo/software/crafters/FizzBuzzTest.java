@@ -1,8 +1,8 @@
-package dojo;
+package dojo.software.crafters;
 
 import org.junit.jupiter.api.Test;
 
-import static dojo.FizzBuzz.fizzBuzz;
+import static dojo.software.crafters.FizzBuzz.fizzBuzz;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FizzBuzzTest {

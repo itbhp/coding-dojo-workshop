@@ -1,4 +1,4 @@
-package dojo;
+package dojo.software.crafters;
 
 public class FizzBuzz 
 {
