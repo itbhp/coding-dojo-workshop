@@ -12,7 +12,8 @@ public class FizzBuzzTest {
     @CsvSource({
             "1, 1",
             "2, 2",
-            "4, 4"
+            "4, 4",
+            "3, Fizz"
     })
     void fizz_buzz_should_work(int number, String expected) {
         assertThat(fizzBuzz(number)).isEqualTo(expected);
