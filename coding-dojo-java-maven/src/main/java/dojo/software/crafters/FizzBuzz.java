@@ -27,11 +27,7 @@ public class FizzBuzz {
 
         @Override
         public String applyTo(int number) {
-            if (isSatisfiedBy(number)) {
-                return motto;
-            } else {
-                return "";
-            }
+            return isSatisfiedBy(number) ? motto : "";
         }
 
         private boolean isSatisfiedBy(int number) {
