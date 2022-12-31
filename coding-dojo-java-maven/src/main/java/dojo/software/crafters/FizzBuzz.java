@@ -48,10 +48,10 @@ public class FizzBuzz {
         List<Rule> rules = List.of(new NumberRule("Fizz", 3), new NumberRule("Buzz", 5));
 
         Rule identityRule = IdentityRule.INSTANCE;
-        Rule result = rules.stream()
+        Rule composedRule = rules.stream()
                 .reduce(identityRule, FizzBuzz::combineRules);
 
-        String rulesResult = result.applyTo(number);
-        return rulesResult.isEmpty() ? String.valueOf(number) : rulesResult;
+        String mapping = composedRule.applyTo(number);
+        return mapping.isEmpty() ? String.valueOf(number) : mapping;
     }
 }
