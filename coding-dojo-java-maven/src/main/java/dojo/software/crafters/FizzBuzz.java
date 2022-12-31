@@ -45,7 +45,8 @@ public class FizzBuzz {
     }
 
     public static String fizzBuzz(int number) {
-        List<Rule> rules = List.of(new NumberRule("Fizz", 3), new NumberRule("Buzz", 5));
+        List<Rule> rules =
+                List.of(new NumberRule("Fizz", 3), new NumberRule("Buzz", 5));
 
         Rule identityRule = IdentityRule.INSTANCE;
         Rule composedRule = rules.stream()
