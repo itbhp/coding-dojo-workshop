@@ -44,14 +44,14 @@ public class FizzBuzz {
         }
     }
 
+    private static final List<Rule> rules =
+            List.of(new NumberRule("Fizz", 3), new NumberRule("Buzz", 5));
+
+    private static final Rule identityRule = IdentityRule.INSTANCE;
+
+    private static final Rule composedRule = rules.stream().reduce(identityRule, FizzBuzz::combineRules);
+
     public static String fizzBuzz(int number) {
-        List<Rule> rules =
-                List.of(new NumberRule("Fizz", 3), new NumberRule("Buzz", 5));
-
-        Rule identityRule = IdentityRule.INSTANCE;
-        Rule composedRule = rules.stream()
-                .reduce(identityRule, FizzBuzz::combineRules);
-
         String mapping = composedRule.applyTo(number);
         return mapping.isEmpty() ? String.valueOf(number) : mapping;
     }
