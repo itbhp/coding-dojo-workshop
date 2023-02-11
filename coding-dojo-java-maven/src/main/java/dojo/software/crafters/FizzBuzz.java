@@ -18,15 +18,7 @@ public class FizzBuzz {
         Rule identity = number -> "";
     }
 
-    static class NumberRule implements Rule {
-        private final String motto;
-        private final int divisor;
-
-        public NumberRule(String motto, int divisor) {
-            this.motto = motto;
-            this.divisor = divisor;
-        }
-
+    record NumberRule(String motto, int divisor) implements Rule {
         @Override
         public String applyTo(int number) {
             if (number % divisor == 0) {
