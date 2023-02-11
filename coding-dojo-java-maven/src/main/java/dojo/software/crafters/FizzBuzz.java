@@ -37,11 +37,9 @@ public class FizzBuzz {
     }
 
     public static String fizzBuzz(int number) {
-        var rules = List.of(new NumberRule("Fizz", 3), new NumberRule("Buzz", 5));
-        var combinedRule = rules.stream().reduce(Rule.identity, Rule::combine, (rule, rule2) -> {
-            throw new UnsupportedOperationException();
-        });
+        var rules = List.<Rule>of(new NumberRule("Fizz", 3), new NumberRule("Buzz", 5));
+        var combinedRule = rules.stream().reduce(Rule.identity, Rule::combine);
         var result = combinedRule.adapt(number);
-        return result.equals("") ? String.valueOf(number) : result;
+        return result.isEmpty() ? String.valueOf(number) : result;
     }
 }
