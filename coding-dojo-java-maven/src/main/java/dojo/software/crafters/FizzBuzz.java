@@ -5,12 +5,12 @@ import java.util.List;
 public class FizzBuzz {
 
     interface Rule {
-        String adapt(int number);
+        String applyTo(int number);
 
-        static Rule combine(Rule first, Rule second){
+        static Rule combine(Rule first, Rule second) {
             return number -> {
-                var r1 = first.adapt(number);
-                var r2 = second.adapt(number);
+                var r1 = first.applyTo(number);
+                var r2 = second.applyTo(number);
                 return r1 + r2;
             };
         }
@@ -28,7 +28,7 @@ public class FizzBuzz {
         }
 
         @Override
-        public String adapt(int number) {
+        public String applyTo(int number) {
             if (number % divisor == 0) {
                 return motto;
             }
@@ -36,10 +36,13 @@ public class FizzBuzz {
         }
     }
 
+    private static final List<Rule> rules =
+            List.of(new NumberRule("Fizz", 3), new NumberRule("Buzz", 5));
+
+    private static final Rule combinedRule = rules.stream().reduce(Rule.identity, Rule::combine);
+
     public static String fizzBuzz(int number) {
-        var rules = List.<Rule>of(new NumberRule("Fizz", 3), new NumberRule("Buzz", 5));
-        var combinedRule = rules.stream().reduce(Rule.identity, Rule::combine);
-        var result = combinedRule.adapt(number);
+        var result = combinedRule.applyTo(number);
         return result.isEmpty() ? String.valueOf(number) : result;
     }
 }
